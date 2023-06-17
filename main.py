@@ -2,6 +2,14 @@ import asyncio
 import json
 import re
 import subprocess
+import argparse
+
+
+parser = argparse.ArgumentParser(description="nmap scanner")
+parser.add_argument('-ip_filename', dest='ip_filename', metavar='ip_filename', help='IPs file path to scan (.txt)')
+parser.add_argument('-port_filename', dest='port_filename', metavar='port_filename',
+                    help='Ports file path to scan (.txt)')
+args = parser.parse_args()
 
 
 async def nmap_ip_scan(ip_address: str) -> str:
@@ -32,10 +40,7 @@ async def scan_all_ips(ip_file_path: str, port_file_path: str) -> dict:
 
 
 async def main():
-    ip_file_path = 'ip.txt'  # or: input('IP File name:')
-    port_file_path = 'ports.txt'  # or: input('Ports File name:')
-    print(json.dumps(await scan_all_ips(ip_file_path, port_file_path), indent=4))
+    print(json.dumps(await scan_all_ips(args.ip_filename, args.port_filename), indent=4))
 
 
-if __name__ == "__main__":
-    asyncio.run(main())
+asyncio.run(main())
