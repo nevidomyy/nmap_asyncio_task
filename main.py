@@ -3,7 +3,7 @@ import json
 import re
 import subprocess
 import argparse
-
+from utils import async_timed
 
 parser = argparse.ArgumentParser(description="nmap scanner")
 parser.add_argument('-ip_filename', dest='ip_filename', metavar='ip_filename', required=True,
@@ -19,7 +19,8 @@ async def nmap_ip_scan(ip_address: str) -> str:
     return output.decode()
 
 
-async def scan_all_ips(ip_file_path: str, port_file_path: str) -> dict:
+@async_timed()
+async def scan_all_ips(ip_file_path: str, port_file_path: str):
     with open(ip_file_path, 'r') as f:
         ip_addresses = f.read().splitlines()
     with open(port_file_path, 'r') as f:
@@ -37,11 +38,7 @@ async def scan_all_ips(ip_file_path: str, port_file_path: str) -> dict:
                     parsed_results[ip_address]['Opened_ports'].append(line_parts[0].split('/')[0])
         parsed_results[ip_address]['Closed_ports'] = [port for port in ports
                                                       if port not in parsed_results[ip_address]['Opened_ports']]
-    return parsed_results
+    print(json.dumps(parsed_results, indent=4))
 
 
-async def main():
-    print(json.dumps(await scan_all_ips(args.ip_filename, args.port_filename), indent=4))
-
-
-asyncio.run(main())
+asyncio.run(scan_all_ips(args.ip_filename, args.port_filename))
