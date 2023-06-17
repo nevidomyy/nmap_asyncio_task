@@ -9,3 +9,6 @@ b) a list of ports from the file (specified at the start of the program) that we
 
 # Run
 - python3 main.py -ip_filename ip.txt -port_filename ports.txt
+
+
+>You must have been installed nmap to run the script
