@@ -1,4 +1,5 @@
 # nmap_asyncio_task
+Scanning is performed asynchronously, which reduces program execution time\
 ip.txt - A file with a list of ip addresses to be scanned\
 port.txt - A file with a list of ports
 
