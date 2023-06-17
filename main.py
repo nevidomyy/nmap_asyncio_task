@@ -3,7 +3,7 @@ import json
 import re
 import subprocess
 import argparse
-from utils import async_timed
+
 
 parser = argparse.ArgumentParser(description="nmap scanner")
 parser.add_argument('-ip_filename', dest='ip_filename', metavar='ip_filename', required=True,
@@ -19,7 +19,6 @@ async def nmap_ip_scan(ip_address: str) -> str:
     return output.decode()
 
 
-@async_timed()
 async def scan_all_ips(ip_file_path: str, port_file_path: str):
     with open(ip_file_path, 'r') as f:
         ip_addresses = f.read().splitlines()
