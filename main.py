@@ -40,4 +40,5 @@ async def scan_all_ips(ip_file_path: str, port_file_path: str):
     print(json.dumps(parsed_results, indent=4))
 
 
-asyncio.run(scan_all_ips(args.ip_filename, args.port_filename))
+if __name__ == '__main__':
+    asyncio.run(scan_all_ips(args.ip_filename, args.port_filename))
