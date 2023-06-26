@@ -1,4 +1,4 @@
-"""This a main file"""
+"""This a main file with CLI arguments initialization"""
 import asyncio
 import argparse
 
