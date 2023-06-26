@@ -31,11 +31,11 @@ async def scan_all_ips(ip_file_path: str, port_file_path: str):
 
     results = await asyncio.gather(*[nmap_ip_scan(ip_address) for ip_address
                                      in ip_addresses])
-    print(json.dumps(parse_results(ip_addresses, ports, results), indent=4))
+    print(parse_results(ip_addresses, ports, results))
 
 
 def parse_results(ip_addresses: list[str], ports: list[str],
-                  results: list) -> dict:
+                  results: list) -> json:
     """
     :param ip_addresses: list of IP addresses
     :param ports: list of ports
@@ -55,4 +55,4 @@ def parse_results(ip_addresses: list[str], ports: list[str],
         closed_ports = [port for port in ports if port not in
                         parsed_results[ip_address]['Opened_ports']]
         parsed_results[ip_address]['Closed_ports'] = closed_ports
-    return parsed_results
+    return json.dumps(parsed_results, indent=4)
