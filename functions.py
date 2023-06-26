@@ -7,6 +7,7 @@ import re
 
 async def nmap_ip_scan(ip_address: str) -> str:
     """
+    This coroutine scan ip address by 1000 ports
     :param ip_address: for example '192.168.1.3'
     :return: information about this address in string format
     """
