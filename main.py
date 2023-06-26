@@ -35,7 +35,8 @@ async def scan_all_ips(ip_file_path: str, port_file_path: str):
     print(json.dumps(parse_results(ip_addresses, ports, results), indent=4))
 
 
-def parse_results(ip_addresses: list[str], ports: list[str], results: list):
+def parse_results(ip_addresses: list[str], ports: list[str],
+                  results: list) -> list[str]:
     """
     :param ip_addresses: list of IP addresses
     :param ports: list of ports
@@ -55,7 +56,6 @@ def parse_results(ip_addresses: list[str], ports: list[str], results: list):
         closed_ports = [port for port in ports if port not in
                         parsed_results[ip_address]['Opened_ports']]
         parsed_results[ip_address]['Closed_ports'] = closed_ports
-
     return parsed_results
 
 
@@ -68,5 +68,4 @@ if __name__ == '__main__':
                         metavar='port_filename', required=True,
                         help='Ports file path to scan (.txt)')
     args = parser.parse_args()
-
     asyncio.run(scan_all_ips(args.ip_filename, args.port_filename))
