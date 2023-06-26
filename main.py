@@ -36,7 +36,7 @@ async def scan_all_ips(ip_file_path: str, port_file_path: str):
 
 
 def parse_results(ip_addresses: list[str], ports: list[str],
-                  results: list) -> list[str]:
+                  results: list) -> dict:
     """
     :param ip_addresses: list of IP addresses
     :param ports: list of ports
