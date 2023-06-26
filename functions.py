@@ -19,9 +19,9 @@ async def nmap_ip_scan(ip_address: str) -> str:
 async def scan_all_ips(ip_file_path: str, port_file_path: str):
     """
     :param ip_file_path: ip file path in txt format, for example:
-    '/my/path/ip.txt
+    '/my/path/ip.txt'
     :param port_file_path: port file path in txt format, for example:
-     '/my/path/port.txt
+     '/my/path/port.txt'
     This function printed information about IP and ports in CLI
     """
     with open(ip_file_path, 'r', encoding='utf-8') as ip_file:
