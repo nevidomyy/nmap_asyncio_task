@@ -7,7 +7,7 @@ import re
 
 async def nmap_ip_scan(ip_address: str) -> str:
     """
-    :param ip_address: foe example '192.168.1.3'
+    :param ip_address: for example '192.168.1.3'
     :return: information about this address in string format
     """
     process = await asyncio.create_subprocess_shell(f'nmap {ip_address}',
